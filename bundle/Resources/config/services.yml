@@ -1,0 +1,21 @@
+services:
+    wizhippo.paginated_query_controller:
+        class: Wizhippo\Bundle\EzCoreExtraBundle\Controller\PagerFantaQueryController
+        arguments:
+            - '@ezpublish.query_type_content_view_mapper'
+            - '@ezpublish.api.service.search'
+
+    wizhippo.search.solr.query.content.facet_builder_visitor.field:
+        class: Wizhippo\eZ\EzPlatformSolrSearchEngine\Query\Common\FacetBuilderVisitor\Field
+        arguments: ["@ezpublish.search.common.field_name_resolver"]
+        tags:
+            - { name: ezpublish.search.solr.query.content.facet_builder_visitor }
+
+    wizhippo.search.solr.query.common.criterion_visitor.field_like:
+        class: Wizhippo\eZ\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Field\FieldLike
+        arguments:
+            - "@ezpublish.search.common.field_name_resolver"
+            - "@ezpublish.search.common.field_value_mapper.aggregate"
+        tags:
+            - {name: ezpublish.search.solr.query.content.criterion_visitor}
+            - {name: ezpublish.search.solr.query.location.criterion_visitor}
