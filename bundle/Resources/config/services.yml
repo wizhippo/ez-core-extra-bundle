@@ -10,12 +10,3 @@ services:
         arguments: ["@ezpublish.search.common.field_name_resolver"]
         tags:
             - { name: ezpublish.search.solr.query.content.facet_builder_visitor }
-
-    wizhippo.search.solr.query.common.criterion_visitor.field_like:
-        class: Wizhippo\eZ\EzPlatformSolrSearchEngine\Query\Common\CriterionVisitor\Field\FieldLike
-        arguments:
-            - "@ezpublish.search.common.field_name_resolver"
-            - "@ezpublish.search.common.field_value_mapper.aggregate"
-        tags:
-            - {name: ezpublish.search.solr.query.content.criterion_visitor}
-            - {name: ezpublish.search.solr.query.location.criterion_visitor}
