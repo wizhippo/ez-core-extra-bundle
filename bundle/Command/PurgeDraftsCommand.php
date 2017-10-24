@@ -31,7 +31,7 @@ class PurgeDraftsCommand extends ContainerAwareCommand
         $query = new Query([
             'query' => new Criterion\LogicalAnd(
                 [
-                    new Criterion\ContentTypeIdentifier(['user', 'associate_user']),
+                    new Criterion\ContentTypeIdentifier(['user']),
                 ]
             ),
         ]);
