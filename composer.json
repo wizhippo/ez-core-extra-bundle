@@ -11,7 +11,7 @@
   ],
   "require": {
     "php": "^7.0",
-    "ezsystems/ezpublish-kernel": "^6.5.2",
+    "ezsystems/ezpublish-kernel": "^6.11@dev || ^7.0@dev",
     "ezsystems/ezplatform-solr-search-engine": "^1.3"
   },
   "require-dev": {
