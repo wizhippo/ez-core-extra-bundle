@@ -64,8 +64,8 @@ class TemplateMailer
         $template = $this->twig->loadTemplate($templateName);
 
         /* @var $message \Swift_Message */
-        $message = Swift_Message::newInstance()
-            ->setFrom($fromAddresses)
+        $message = new Swift_Message();
+        $message->setFrom($fromAddresses)
             ->setTo($toAddresses);
 
         $subject = trim($template->renderBlock('subject', $parameters));
