@@ -4,9 +4,3 @@ services:
         arguments:
             - '@ezpublish.query_type_content_view_mapper'
             - '@ezpublish.api.service.search'
-
-    wizhippo.search.solr.query.content.facet_builder_visitor.field:
-        class: Wizhippo\eZ\EzPlatformSolrSearchEngine\Query\Common\FacetBuilderVisitor\Field
-        arguments: ["@ezpublish.search.common.field_name_resolver"]
-        tags:
-            - { name: ezpublish.search.solr.query.content.facet_builder_visitor }
