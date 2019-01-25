@@ -10,8 +10,7 @@ use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\Core\QueryType\ContentViewQueryTypeMapper;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\Request;
-use Wizhippo\eZ\Publish\Core\Pagination\Pagerfanta\ContentSearchAdapter;
-use Wizhippo\eZ\Publish\Core\Pagination\Pagerfanta\LocationSearchAdapter;
+use Wizhippo\eZ\Publish\Core\Pagination\Pagerfanta\SearchAdapter;
 
 class PagerFantaQueryController
 {
@@ -44,15 +43,7 @@ class PagerFantaQueryController
     public function queryPaginationAction(Request $request, ContentView $view)
     {
         $query = $this->contentViewQueryTypeMapper->map($view);
-
-        if ($query instanceof LocationQuery) {
-            $adapter = new LocationSearchAdapter($query, $this->searchService);
-        } elseif ($query instanceof Query) {
-            $adapter = new ContentSearchAdapter($query, $this->searchService);
-        } else {
-            throw new InvalidArgumentException('query', 'Unsupported QueryType ' . get_class($query));
-        }
-
+        $adapter = new SearchAdapter($query, $this->searchService);
         $searchResults = new Pagerfanta($adapter);
         $searchResults->setMaxPerPage($view->getParameter('page_limit'));
         $searchResults->setCurrentPage($request->get('page', 1));

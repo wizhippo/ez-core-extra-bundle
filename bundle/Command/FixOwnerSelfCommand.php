@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Wizhippo\eZ\Publish\Core\Pagination\Pagerfanta\HandlerSearchHitAdapter;
+use Wizhippo\eZ\Publish\Core\Pagination\Pagerfanta\SearchHandlerAdapter;
 
 class FixOwnerSelfCommand extends ContainerAwareCommand
 {
@@ -37,7 +37,7 @@ class FixOwnerSelfCommand extends ContainerAwareCommand
                 new Criterion\ContentTypeIdentifier('user'),
             ]),
         ]);
-        $pager = new Pagerfanta(new HandlerSearchHitAdapter($query,
+        $pager = new Pagerfanta(new SearchHandlerAdapter($query,
             $this->getContainer()->get('ezpublish.spi.search.legacy')));
         $pager->setMaxPerPage(100);
 

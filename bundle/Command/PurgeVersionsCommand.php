@@ -10,7 +10,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Wizhippo\eZ\Publish\Core\Pagination\Pagerfanta\HandlerSearchHitAdapter;
+use Wizhippo\eZ\Publish\Core\Pagination\Pagerfanta\SearchHandlerAdapter;
 
 class PurgeVersionsCommand extends ContainerAwareCommand
 {
@@ -37,7 +37,7 @@ class PurgeVersionsCommand extends ContainerAwareCommand
         // search engines
         // TODO: replace when correct api available
         $query = new Query();
-        $pager = new Pagerfanta(new HandlerSearchHitAdapter($query,
+        $pager = new Pagerfanta(new SearchHandlerAdapter($query,
             $this->getContainer()->get('ezpublish.spi.search.legacy')));
         $pager->setMaxPerPage(100);
 
